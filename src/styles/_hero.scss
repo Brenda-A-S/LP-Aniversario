@@ -1,0 +1,26 @@
+.hero {
+    padding-top: 4rem;
+    padding-bottom: 6.25rem;
+
+    &__text{
+        font-family: "Italianno", serif;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    &__logo{
+        margin: 0 auto;
+        height: 80px;
+        display: block;
+    }
+
+    @media (max-width:640px) {
+        padding: 1.75rem 0;
+
+        &__text{
+            margin: 1.5rem 0;
+        }
+    }
+}

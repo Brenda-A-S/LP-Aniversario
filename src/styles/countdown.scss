@@ -1,0 +1,69 @@
+@use '_variables' as _Color;
+
+.countdown {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+
+    &__subtitle {
+        display: block;
+        font-family: "Italianno", serif;
+        font-size: 2.25rem;
+        color: _Color.$c-2f;
+    }
+
+    &__list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+
+        &__item {
+            color: _Color.$c-a9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 5rem;
+            padding: 1rem;
+        }
+    }
+
+    @media (max-width: 760px) {
+        gap: 1rem;
+
+        &__list {
+            grid-template-columns: 1fr 1fr;
+
+            &__item {
+                font-size: 3rem;
+
+                &:nth-child(1) {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        gap: .25rem;
+
+        &__list {
+            grid-template-columns: 1fr;
+
+            &__item {
+                font-size: 4rem;
+                line-height: 4rem;
+
+                &:nth-child(1) {
+                    font-size: 7rem;
+                }
+            }
+        }
+
+    }
+}

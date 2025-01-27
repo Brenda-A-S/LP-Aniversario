@@ -596,6 +596,124 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"3cYfC":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _countdownJs = require("./_countdown.js");
+var _countdownJsDefault = parcelHelpers.interopDefault(_countdownJs);
+const birthday = new (0, _countdownJsDefault.default)('25 february 2024 00:00:00 GMT-0300');
+birthday.init();
+
+},{"./_countdown.js":"9ArqV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9ArqV":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class Countdown {
+    constructor(futureDate){
+        this.futureDate = futureDate;
+        this.countdown = document.querySelectorAll('.countdown li');
+        this.updateTimer;
+        this.buildCountdown = this.buildCountdown.bind(this);
+    }
+    get _actualDate() {
+        return new Date();
+    }
+    get _futureDate() {
+        return new Date(this.futureDate);
+    }
+    get _timeStampDiff() {
+        return this._futureDate.getTime() - this._actualDate.getTime();
+    }
+    get days() {
+        return Math.floor(this._timeStampDiff / 86400000);
+    }
+    get hours() {
+        return Math.floor(this._timeStampDiff / 3600000);
+    }
+    get minutes() {
+        return Math.floor(this._timeStampDiff / 60000);
+    }
+    get seconds() {
+        return Math.floor(this._timeStampDiff / 1000);
+    }
+    get total() {
+        const days = this.days;
+        const hours = this.hours % 24;
+        const minutes = this.minutes % 60;
+        const seconds = this.seconds % 60;
+        return [
+            days,
+            hours,
+            minutes,
+            seconds
+        ];
+    }
+    get units() {
+        const days = 'dias';
+        const hours = 'horas';
+        const minutes = 'minutos';
+        const seconds = 'segundos';
+        return [
+            days,
+            hours,
+            minutes,
+            seconds
+        ];
+    }
+    updateCountdown() {
+        this.updateTimer = setInterval(this.buildCountdown, 1000);
+    }
+    buildCountdown() {
+        if (this._timeStampDiff <= 0) this.incrementYear(); // Incrementa o ano e reinicia o countdown
+        else this.countdown.forEach((item, index)=>{
+            const number = this.total[index];
+            let unit = this.units[index];
+            number === 1 ? unit = unit.replace(/s$/, '') : unit;
+            item.innerHTML = `${number} <span class="countdown__subtitle">${unit}</span>`;
+        });
+    }
+    incrementYear() {
+        const currentDate = new Date(this.futureDate);
+        currentDate.setFullYear(currentDate.getFullYear() + 1);
+        this.futureDate = currentDate.toISOString();
+        this.buildCountdown();
+    }
+    init() {
+        if (this.futureDate) {
+            this.buildCountdown();
+            this.updateCountdown();
+        }
+        return this;
+    }
+}
+exports.default = Countdown;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["k51Nd","3cYfC"], "3cYfC", "parcelRequire94c2")
 

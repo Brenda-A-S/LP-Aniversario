@@ -1,0 +1,26 @@
+@use 'reset.scss';
+@use '_hero.scss';
+@use '_infos.scss';
+@use '_buttons.scss';
+@use 'countdown.scss';
+
+@use '_variables' as _Color;
+
+body {
+    background-color: _Color.$c-d9;
+    font-family: "Inria Serif", serif;
+}
+
+.container {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+
+    @media (max-width:640px) {
+        max-width: 80%;
+    }
+
+    @media (max-width:1024px) {
+        max-width: 90%;
+    }
+}
