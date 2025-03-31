@@ -58,7 +58,7 @@ export default class Countdown {
 
     buildCountdown() {
         if (this._timeStampDiff <= 0) {
-            this.incrementYear(); // Incrementa o ano e reinicia o countdown
+            this.incrementYear();
         } else {
             this.countdown.forEach((item, index) => {
                 const number = this.total[index];
